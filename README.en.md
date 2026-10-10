@@ -14,7 +14,8 @@ Give the AI a *Watchtower* article link. It searches and reads **only wol.jw.org
 |---|---|---|
 | **Claude Code** (Code tab in the Claude desktop app) | ⭐ Best | You can watch the research live in the browser pane |
 | **Codex** (ChatGPT's coding tool) | ○ Good | Verify through the research table and sources |
-| **Claude chat** (claude.ai or desktop app chat) | △ Works | The research process isn't visible, and accuracy may be a little lower |
+| **Claude chat + Chrome extension** | ○ Good | Watch the AI search WOL in Chrome (paid plan required) |
+| **Claude chat** (without the extension) | △ Works | The research process isn't visible, and accuracy may be a little lower |
 
 ---
 
@@ -43,6 +44,23 @@ Give the AI a *Watchtower* article link. It searches and reads **only wol.jw.org
    ```
 3. Approve when asked. When it's done, restart Codex.
 4. Turn on **web search** in Codex settings.
+
+### ④ Chrome extension (Claude in Chrome)
+Install this extension if you want Claude chat to **control your Chrome browser directly** while it researches WOL. You can watch the research as it happens.
+
+> **Requirements:** a **paid Claude plan** (Pro, Max, Team, or Enterprise), **Google Chrome**, and a computer. Mobile devices and other browsers are not supported. This feature is currently in beta.
+
+1. In Chrome, open the official extension page:
+   👉 https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn
+2. Click **Add to Chrome**.
+3. **Sign in with your Claude account** when prompted.
+4. Click the puzzle-piece (🧩) icon at the top right of Chrome, then click the **pin (📌)** next to Claude.
+5. **Grant the permissions** it asks for.
+6. Open wol.jw.org in Chrome, then click the **Claude icon** in the toolbar to open the side panel.
+7. Send the article link and your request in the side panel. (See [Usage](#usage).)
+   - If it asks whether it may access wol.jw.org, choose **Allow**.
+
+> ⚠️ Some extensions from other companies have similar names (e.g., "Claude Toolbox"). Install only the **official Anthropic** extension from the link above.
 
 ---
 
