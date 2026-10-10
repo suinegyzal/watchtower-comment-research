@@ -4,8 +4,6 @@
 
 An AI skill that researches paragraph-by-paragraph comments for the *Watchtower* Study **using wol.jw.org only**. It organizes them into **Basic / Additional / Research** comments.
 
-> This repository is private and visible only to invited people. Please don't share the link or files publicly.
-
 ![Research flow](docs/images/research-flow.gif)
 
 ---
@@ -60,8 +58,7 @@ mkdir -p ~/.claude/skills
 cp -R watchtower-comment-research/watchtower-comment-research ~/.claude/skills/
 ```
 
-- This is a private repo, so cloning requires a GitHub login. Run `gh auth login` first.
-- Alternatively, use **Code → Download ZIP**, unzip it, and put the `watchtower-comment-research` folder into `~/.claude/skills/`.
+- No `git`? Alternatively, use **Code → Download ZIP**, unzip it, and put the `watchtower-comment-research` folder into `~/.claude/skills/`.
 - Restart Claude Code after installing. In the desktop app, open a new session.
 
 ### B. Codex CLI

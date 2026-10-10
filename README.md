@@ -4,8 +4,6 @@
 
 「파수대」 연구 기사의 항별 해설을 **wol.jw.org에서만** 조사해서 **기본해설 / 부가해설 / 연구해설**로 정리해 주는 AI 스킬입니다.
 
-> 이 저장소는 비공개입니다. 초대받은 분만 볼 수 있으니 링크나 파일을 다른 곳에 공개하지 말아 주세요.
-
 ![조사 과정](docs/images/research-flow.gif)
 
 ---
@@ -62,8 +60,7 @@ mkdir -p ~/.claude/skills
 cp -R watchtower-comment-research/watchtower-comment-research ~/.claude/skills/
 ```
 
-- 비공개 저장소라서 `git clone`을 하려면 GitHub 로그인이 필요합니다. `gh auth login`을 먼저 실행하세요.
-- 또는 저장소 페이지에서 **Code → Download ZIP**으로 내려받아 압축을 풉니다. 그런 다음 `watchtower-comment-research` 폴더를 `~/.claude/skills/` 안에 넣어도 됩니다.
+- `git`이 없다면 저장소 페이지에서 **Code → Download ZIP**으로 내려받아 압축을 풉니다. 그런 다음 `watchtower-comment-research` 폴더를 `~/.claude/skills/` 안에 넣어도 됩니다.
 - 설치한 뒤에는 Claude Code를 새로 시작하세요. 데스크톱 앱이라면 새 세션을 열면 됩니다.
 
 ### B. Codex CLI
