@@ -23,6 +23,9 @@
 
 ### ① Claude 채팅
 1. [`watchtower-comment-research.skill`](watchtower-comment-research.skill) 파일을 내려받습니다. 링크를 연 뒤 오른쪽 위의 다운로드 버튼(↓)을 누르면 됩니다.
+
+   <img src="docs/images/install-download.png" width="560">
+
 2. Claude에서 **설정 → 기능(Capabilities) → 스킬(Skills)**로 가서 파일을 올립니다.
 3. 같은 화면에서 **웹 검색**이 켜져 있는지 확인합니다.
 

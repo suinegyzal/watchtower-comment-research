@@ -23,6 +23,9 @@ Give the AI a *Watchtower* article link. It searches and reads **only wol.jw.org
 
 ### ① Claude chat
 1. Download [`watchtower-comment-research.skill`](watchtower-comment-research.skill). Open the link and click the download button (↓) at the top right.
+
+   <img src="docs/images/install-download.png" width="560">
+
 2. In Claude, go to **Settings → Capabilities → Skills** and upload the file.
 3. On the same screen, make sure **web search** is on.
 
