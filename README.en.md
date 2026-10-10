@@ -2,92 +2,126 @@
 
 **English** | [한국어](README.md)
 
-An AI assistant that researches paragraph-by-paragraph comments for the *Watchtower* Study **using wol.jw.org only**. It organizes them into **Basic / Additional / Research** comments.
+An AI skill that researches paragraph-by-paragraph comments for the *Watchtower* Study **using wol.jw.org only**. It organizes them into **Basic / Additional / Research** comments.
 
 > This repository is private and visible only to invited people. Please don't share the link or files publicly.
 
----
-
-## What it does
-
-- Give it an article link, and it prepares three comments for each paragraph:
-  - **Basic comment**: 1–2 sentences that directly answer the study question
-  - **Additional comment**: 1–2 sentences from another cited scripture or angle in the same paragraph
-  - **Research comment**: a point backed by WOL publications, scripture footnotes, *Insight*, and so on, with the source cited
-- It researches the way a person would: it types keywords into the WOL search box, opens the results, reads them, and then writes the comments.
-- It shows its research trail in a table (search keyword → number of results → material opened → what was found), so you can retrace and verify every step.
-- **It never uses sites other than jw.org / wol.jw.org.** Anything it could not confirm is marked "source not confirmed."
-
-> The skill writes its output in Korean by default. To get English output, ask for it, e.g., "answer in English, using the English WOL". The English WOL search URL is `https://wol.jw.org/en/wol/s/r1/lp-e?q=...`.
-
-## Example output
-
-| # | Keyword | Results | Material opened | Finding |
-|---|---|---|---|---|
-| 1 | 빛의 천사로 가장 ("disguising himself as an angel of light") | 38 | *Insight*, Vol. 1, "Satan" | Satan approaches while "concealing his identity and purpose" |
-| 2 | 의심 바다 물결 ("doubt, wave of the sea") | 33 | *Watchtower*, Feb 2021, pp. 26-31 | Doubt is like rust on the chain that holds the anchor |
-
-**Paragraph 1: What does Satan use to try to turn us away from Jehovah?**
-- **Basic**: Satan knows he can't win as long as we stay close to Jehovah. So he tries to make us doubt that Jehovah and Jesus love us, so that we turn away ourselves.
-- **Additional**: Satan wants us to believe we are "unworthy of love." But Romans 8:38, 39 says nothing can separate us from God's love. (*Watchtower*, Sept 2019, par. 15)
-- **Research**: James 1:6 compares a doubter to a wave of the sea. If our hope is an anchor, our faith is the chain attached to it, and doubts left unresolved rust that chain. (*Watchtower*, Feb 2021, pars. 15-16)
+![Research flow](docs/images/research-flow.gif)
 
 ---
 
-## How to use
+## ⚠️ Read first: don't use this in a regular chat
 
-### Option A. Claude (recommended)
+Use this skill in an **agent** tool such as **Claude Code** or **Codex**. It is not designed for the regular chat window of claude.ai or ChatGPT.
 
-**Claude desktop app or claude.ai**
-1. Download [`watchtower-comment-research.skill`](watchtower-comment-research.skill) from this repo. Open the file, then use the download button at the top right.
-2. In Claude, go to **Settings → Capabilities → Skills** and upload the file.
-   - Menu names may vary slightly by app version.
-3. In a new chat, ask:
-   ```
-   This week's Watchtower article: https://wol.jw.org/ko/wol/d/r8/lp-ko/(article id)
-   Please prepare Basic, Additional, and Research comments for paragraphs 1–3.
-   ```
-4. In the Claude desktop app (Code tab), you can watch the research live in the built-in browser pane.
+![Regular chat vs agent](docs/images/chat-vs-agent.png)
 
-**Claude Code (terminal)**
+A regular chat can't really search and open wol.jw.org step by step, so it may rely on memory and produce plausible-looking but unverified sources. This skill depends on **actually searching, opening, reading, and verifying**, which requires an agent tool.
+
+| Tool | Recommended | Notes |
+|---|---|---|
+| **Claude desktop app → Code tab** | ⭐ Best | You can watch the research live in the built-in browser pane |
+| **Claude Code (terminal)** | ○ | Verify through progress updates and the research table |
+| **Codex CLI** | ○ | Turn on live web search (`--search`) |
+| claude.ai / ChatGPT regular chat | × | Not recommended |
+
+---
+
+## How it works
+
+The skill follows the same steps a person would take when researching on WOL.
+
+| Step | Screen |
+|---|---|
+| **① Read the article**<br>List each paragraph's number, study question, cited scriptures, and footnotes. | <img src="docs/images/step1.png" width="320"> |
+| **② Type keywords into WOL search**<br>Enter 2–3 keywords per paragraph. | <img src="docs/images/step2.png" width="320"> |
+| **③ Review the results**<br>Pick the most relevant and recent publications. If there are 0 results, shorten the keywords and search again. | <img src="docs/images/step3.png" width="320"> |
+| **④ Open and read in context**<br>Open the source and read the surrounding text, not just the search snippet. | <img src="docs/images/step4.png" width="320"> |
+| **⑤ Write the result**<br>A research table plus Basic / Additional / Research comments with sources. | <img src="docs/images/step5-result.png" width="320"> |
+
+> Steps ①–④ are real screenshots of wol.jw.org. The skill works on the Korean WOL and writes in Korean by default. Ask for English to use the English WOL instead.
+
+**Rules it follows**
+- **It never uses sites other than jw.org / wol.jw.org.**
+- Anything it could not confirm is marked "source not confirmed."
+- Spots for a personal experience are marked `[개인 경험]` (personal experience). Fill those in yourself.
+
+---
+
+## Installation
+
+### A. Claude Code (desktop app Code tab / terminal)
+
+![Claude Code install and use](docs/images/claude-code.gif)
+
 ```bash
 git clone https://github.com/suinegyzal/watchtower-comment-research.git
 mkdir -p ~/.claude/skills
 cp -R watchtower-comment-research/watchtower-comment-research ~/.claude/skills/
 ```
 
-### Option B. ChatGPT, Gemini, or other AIs
+- This is a private repo, so cloning requires a GitHub login. Run `gh auth login` first.
+- Alternatively, use **Code → Download ZIP**, unzip it, and put the `watchtower-comment-research` folder into `~/.claude/skills/`.
+- Restart Claude Code after installing. In the desktop app, open a new session.
 
-1. Open [`prompts/파수대-해설-조사-프롬프트.md`](prompts/파수대-해설-조사-프롬프트.md) and copy the "프롬프트 본문" (prompt body) section.
-2. Paste it into one of these places:
-   - **ChatGPT**: Create a custom GPT → Instructions, or use Project instructions.
-   - **Gemini**: Create a Gem → Instructions
-   - **Other AIs**: paste it as the first message of the chat.
-3. **Turn on web search / browsing.** Without it, the AI can't open wol.jw.org.
-4. Send the article link with your request.
+### B. Codex CLI
 
-> Other AIs may not show the research process on screen. In that case, verify the results using the research table and the cited sources.
+![Codex install and use](docs/images/codex.png)
+
+```bash
+git clone https://github.com/suinegyzal/watchtower-comment-research.git
+mkdir -p ~/.codex/skills
+cp -R watchtower-comment-research/watchtower-comment-research ~/.codex/skills/
+codex --search
+```
+
+- `--search` turns on live web search. To keep it on, add `web_search = "live"` to `~/.codex/config.toml`.
+- Approve access to wol.jw.org when Codex asks.
+- If the skill doesn't show up, check that the folder contains `SKILL.md`, then restart Codex.
+
+### Updating
+
+```bash
+cd watchtower-comment-research && git pull
+cp -R watchtower-comment-research ~/.claude/skills/   # or ~/.codex/skills/ for Codex
+```
 
 ---
 
-## Tips
+## Usage
 
+In a new session, send the article link with a request:
+
+```
+This week's Watchtower article: https://wol.jw.org/ko/wol/d/r8/lp-ko/(article id)
+Please prepare Basic, Additional, and Research comments for paragraphs 1–3.
+```
+
+More examples:
+- `Continue with paragraphs 4–6`
+- `Dig deeper for the research comment on paragraph 5`
+- `Make the comments shorter, under 30 seconds each`
+
+**Tips**
 - **Start with 2–3 paragraphs at a time.** Asking for all 18 at once makes the research shallow.
-- Places where a personal experience would help are marked `[개인 경험]` (personal experience). Fill those in yourself.
-- If a comment is too long, ask for it to be "shorter, under 30 seconds."
 - **Always do the final check yourself.** Open each cited source on WOL and confirm the context before using a comment.
+
+---
 
 ## Files
 
 ```
-README.md                         Korean guide
-README.en.md                      English guide (this file)
-watchtower-comment-research.skill Claude skill package
-watchtower-comment-research/      Skill source (SKILL.md, references/wol.md)
-prompts/파수대-해설-조사-프롬프트.md   Shareable prompt for other AIs
+README.md / README.en.md            Guides (Korean / English)
+watchtower-comment-research/        The skill → copy into ~/.claude/skills or ~/.codex/skills
+  ├── SKILL.md                      Research rules and steps
+  └── references/wol.md             WOL URL formats, Bible book numbers
+watchtower-comment-research.skill   Zipped copy of the same skill
+prompts/                            Original prompt text (reference)
+docs/images/                        Images for this guide
 ```
 
 ## Notice
 
 - This is a personal tool to help with meeting preparation. It is not an official tool of Jehovah's Witnesses or the Watch Tower Bible and Tract Society.
-- Content on jw.org is copyrighted by the Watch Tower Bible and Tract Society of Pennsylvania. Do not copy and redistribute publication content in bulk.
+- Content and screenshots from jw.org are copyrighted by the Watch Tower Bible and Tract Society of Pennsylvania. Do not copy and redistribute publication content in bulk.
+- The terminal images (Claude Code / Codex) are **illustrations**. Actual screens may differ by version.
