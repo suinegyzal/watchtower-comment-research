@@ -22,20 +22,34 @@
 ## 설치 방법
 
 ### ① Claude 채팅
-1. [`watchtower-comment-research.skill`](watchtower-comment-research.skill) 파일을 내려받습니다. 링크를 연 뒤 오른쪽 위의 다운로드 버튼(↓)을 누르면 됩니다.
+**1. 스킬 파일 내려받기**
+👉 [**여기를 누르면 바로 내려받아집니다** (watchtower-comment-research.zip)](https://github.com/suinegyzal/watchtower-comment-research/raw/main/watchtower-comment-research.zip)
+ZIP 파일은 압축을 풀지 말고 그대로 두세요.
 
-   <img src="docs/images/install-download.png" width="560">
+**2. 코드 실행 켜기**
+Claude에서 **설정 → 기능(Capabilities)**으로 가서 **코드 실행 및 파일 생성**을 켭니다. 스킬을 쓰려면 이 기능이 켜져 있어야 합니다.
 
-2. Claude에서 **설정 → 기능(Capabilities) → 스킬(Skills)**로 가서 파일을 올립니다.
-3. 같은 화면에서 **웹 검색**이 켜져 있는지 확인합니다.
+<img src="docs/images/install-claude-1-capabilities.png" width="640">
+
+**3. 스킬 올리기**
+**사용자 지정(Customize) → 스킬(Skills)**로 가서 **+ → 스킬 만들기 → 스킬 업로드**를 차례로 누르고, 1번에서 받은 ZIP 파일을 고릅니다.
+
+<img src="docs/images/install-claude-2-upload.png" width="640">
+
+**4. 웹 검색 켜기**
+새 채팅을 열고 입력창 아래 **도구 메뉴**에서 **웹 검색**을 켭니다.
+
+<img src="docs/images/install-claude-3-websearch.png" width="640">
 
 ### ② Claude Code (데스크톱 앱 Code 탭)
-1. Claude 데스크톱 앱에서 **Code** 탭을 엽니다.
+1. Claude 데스크톱 앱 위쪽에서 **Code** 탭을 누릅니다.
 2. 아래 문장을 그대로 붙여 넣고 보냅니다.
    ```
    이 스킬을 내 Claude에 설치해 줘: https://github.com/suinegyzal/watchtower-comment-research
    ```
 3. 허락을 물어보면 승인하고, 설치가 끝나면 **새 세션**을 엽니다.
+
+<img src="docs/images/install-claude-code.png" width="640">
 
 > ①에서 스킬을 이미 올렸다면 Code 탭에서도 바로 보일 수 있습니다. 보이지 않을 때만 ②를 하세요.
 
@@ -45,8 +59,11 @@
    ```
    이 스킬을 설치해 줘: https://github.com/suinegyzal/watchtower-comment-research
    ```
-3. 허락을 물어보면 승인하고, 설치가 끝나면 Codex를 다시 시작합니다.
-4. Codex 설정에서 **웹 검색**을 켭니다.
+3. 허락을 물어보면 **승인**하고, 설치가 끝나면 Codex를 다시 시작합니다.
+
+<img src="docs/images/install-codex.png" width="640">
+
+> Codex는 웹 검색이 기본으로 켜져 있어서 따로 켤 필요가 없습니다.
 
 ### ④ 크롬 확장 프로그램 (Claude in Chrome)
 Claude 채팅에서 AI가 **크롬 브라우저를 직접 움직이며** WOL을 조사하게 하려면 이 확장 프로그램을 설치하세요. 조사 과정을 눈으로 확인할 수 있습니다.

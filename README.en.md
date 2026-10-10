@@ -22,20 +22,36 @@ Give the AI a *Watchtower* article link. It searches and reads **only wol.jw.org
 ## Installation
 
 ### ① Claude chat
-1. Download [`watchtower-comment-research.skill`](watchtower-comment-research.skill). Open the link and click the download button (↓) at the top right.
+**1. Download the skill**
+👉 [**Click here to download it directly** (watchtower-comment-research.zip)](https://github.com/suinegyzal/watchtower-comment-research/raw/main/watchtower-comment-research.zip)
+Don't unzip it. Keep the ZIP file as it is.
 
-   <img src="docs/images/install-download.png" width="560">
+**2. Turn on code execution**
+In Claude, go to **Settings → Capabilities** and turn on **Code execution and file creation**. Skills need this setting.
 
-2. In Claude, go to **Settings → Capabilities → Skills** and upload the file.
-3. On the same screen, make sure **web search** is on.
+<img src="docs/images/install-claude-1-capabilities.png" width="640">
+
+**3. Upload the skill**
+Go to **Customize → Skills**, click **+ → Create skill → Upload a skill**, and choose the ZIP file from step 1.
+
+<img src="docs/images/install-claude-2-upload.png" width="640">
+
+**4. Turn on web search**
+Open a new chat and turn on **Web search** in the **tools menu** under the message box.
+
+<img src="docs/images/install-claude-3-websearch.png" width="640">
+
+> The illustrations use the Korean interface, with English names in parentheses.
 
 ### ② Claude Code (desktop app Code tab)
-1. Open the **Code** tab in the Claude desktop app.
+1. Click the **Code** tab at the top of the Claude desktop app.
 2. Paste this message and send it:
    ```
    Install this skill into my Claude: https://github.com/suinegyzal/watchtower-comment-research
    ```
 3. Approve when asked. When it's done, open a **new session**.
+
+<img src="docs/images/install-claude-code.png" width="640">
 
 > If you already uploaded the skill in ①, it may already appear in the Code tab. Only do ② if it doesn't.
 
@@ -45,8 +61,11 @@ Give the AI a *Watchtower* article link. It searches and reads **only wol.jw.org
    ```
    Install this skill: https://github.com/suinegyzal/watchtower-comment-research
    ```
-3. Approve when asked. When it's done, restart Codex.
-4. Turn on **web search** in Codex settings.
+3. **Approve** when asked. When it's done, restart Codex.
+
+<img src="docs/images/install-codex.png" width="640">
+
+> Web search is on by default in Codex, so you don't need to turn it on.
 
 ### ④ Chrome extension (Claude in Chrome)
 Install this extension if you want Claude chat to **control your Chrome browser directly** while it researches WOL. You can watch the research as it happens.
