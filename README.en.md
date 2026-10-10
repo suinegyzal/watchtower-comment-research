@@ -2,123 +2,83 @@
 
 **English** | [한국어](README.md)
 
-An AI skill that researches paragraph-by-paragraph comments for the *Watchtower* Study **using wol.jw.org only**. It organizes them into **Basic / Additional / Research** comments.
+Give the AI a *Watchtower* article link. It searches and reads **only wol.jw.org**, then writes **Basic / Additional / Research** comments for each paragraph, with sources.
 
 ![Research flow](docs/images/research-flow.gif)
 
 ---
 
-## ⚠️ Read first: don't use this in a regular chat
+## Where to use it
 
-Use this skill in an **agent** tool such as **Claude Code** or **Codex**. It is not designed for the regular chat window of claude.ai or ChatGPT.
-
-![Regular chat vs agent](docs/images/chat-vs-agent.png)
-
-A regular chat can't really search and open wol.jw.org step by step, so it may rely on memory and produce plausible-looking but unverified sources. This skill depends on **actually searching, opening, reading, and verifying**, which requires an agent tool.
-
-| Tool | Recommended | Notes |
+| Where | Recommended | Notes |
 |---|---|---|
-| **Claude desktop app → Code tab** | ⭐ Best | You can watch the research live in the built-in browser pane |
-| **Claude Code (terminal)** | ○ | Verify through progress updates and the research table |
-| **Codex CLI** | ○ | Turn on live web search (`--search`) |
-| claude.ai / ChatGPT regular chat | × | Not recommended |
-
----
-
-## How it works
-
-The skill follows the same steps a person would take when researching on WOL.
-
-| Step | Screen |
-|---|---|
-| **① Read the article**<br>List each paragraph's number, study question, cited scriptures, and footnotes. | <img src="docs/images/step1.png" width="320"> |
-| **② Type keywords into WOL search**<br>Enter 2–3 keywords per paragraph. | <img src="docs/images/step2.png" width="320"> |
-| **③ Review the results**<br>Pick the most relevant and recent publications. If there are 0 results, shorten the keywords and search again. | <img src="docs/images/step3.png" width="320"> |
-| **④ Open and read in context**<br>Open the source and read the surrounding text, not just the search snippet. | <img src="docs/images/step4.png" width="320"> |
-| **⑤ Write the result**<br>A research table plus Basic / Additional / Research comments with sources. | <img src="docs/images/step5-result.png" width="320"> |
-
-> Steps ①–④ are real screenshots of wol.jw.org. The skill works on the Korean WOL and writes in Korean by default. Ask for English to use the English WOL instead.
-
-**Rules it follows**
-- **It never uses sites other than jw.org / wol.jw.org.**
-- Anything it could not confirm is marked "source not confirmed."
-- Spots for a personal experience are marked `[개인 경험]` (personal experience). Fill those in yourself.
+| **Claude Code** (Code tab in the Claude desktop app) | ⭐ Best | You can watch the research live in the browser pane |
+| **Codex** (ChatGPT's coding tool) | ○ Good | Verify through the research table and sources |
+| **Claude chat** (claude.ai or desktop app chat) | △ Works | The research process isn't visible, and accuracy may be a little lower |
 
 ---
 
 ## Installation
 
-### A. Claude Code (desktop app Code tab / terminal)
+### ① Claude chat
+1. Download [`watchtower-comment-research.skill`](watchtower-comment-research.skill). Open the link and click the download button (↓) at the top right.
+2. In Claude, go to **Settings → Capabilities → Skills** and upload the file.
+3. On the same screen, make sure **web search** is on.
 
-![Claude Code install and use](docs/images/claude-code.gif)
+### ② Claude Code (desktop app Code tab)
+1. Open the **Code** tab in the Claude desktop app.
+2. Paste this message and send it:
+   ```
+   Install this skill into my Claude: https://github.com/suinegyzal/watchtower-comment-research
+   ```
+3. Approve when asked. When it's done, open a **new session**.
 
-```bash
-git clone https://github.com/suinegyzal/watchtower-comment-research.git
-mkdir -p ~/.claude/skills
-cp -R watchtower-comment-research/watchtower-comment-research ~/.claude/skills/
-```
+> If you already uploaded the skill in ①, it may already appear in the Code tab. Only do ② if it doesn't.
 
-- No `git`? Alternatively, use **Code → Download ZIP**, unzip it, and put the `watchtower-comment-research` folder into `~/.claude/skills/`.
-- Restart Claude Code after installing. In the desktop app, open a new session.
-
-### B. Codex CLI
-
-![Codex install and use](docs/images/codex.png)
-
-```bash
-git clone https://github.com/suinegyzal/watchtower-comment-research.git
-mkdir -p ~/.codex/skills
-cp -R watchtower-comment-research/watchtower-comment-research ~/.codex/skills/
-codex --search
-```
-
-- `--search` turns on live web search. To keep it on, add `web_search = "live"` to `~/.codex/config.toml`.
-- Approve access to wol.jw.org when Codex asks.
-- If the skill doesn't show up, check that the folder contains `SKILL.md`, then restart Codex.
-
-### Updating
-
-```bash
-cd watchtower-comment-research && git pull
-cp -R watchtower-comment-research ~/.claude/skills/   # or ~/.codex/skills/ for Codex
-```
+### ③ Codex
+1. Open Codex.
+2. Paste this message and send it:
+   ```
+   Install this skill: https://github.com/suinegyzal/watchtower-comment-research
+   ```
+3. Approve when asked. When it's done, restart Codex.
+4. Turn on **web search** in Codex settings.
 
 ---
 
 ## Usage
 
-In a new session, send the article link with a request:
+In a new chat or session, send the article link with a request:
 
 ```
 This week's Watchtower article: https://wol.jw.org/ko/wol/d/r8/lp-ko/(article id)
 Please prepare Basic, Additional, and Research comments for paragraphs 1–3.
 ```
 
-More examples:
+You can follow up with requests like these:
 - `Continue with paragraphs 4–6`
 - `Dig deeper for the research comment on paragraph 5`
-- `Make the comments shorter, under 30 seconds each`
+- `Make them shorter, under 30 seconds each`
 
-**Tips**
-- **Start with 2–3 paragraphs at a time.** Asking for all 18 at once makes the research shallow.
-- **Always do the final check yourself.** Open each cited source on WOL and confirm the context before using a comment.
+> The skill writes in Korean by default. Ask for English to get English output from the English WOL.
+
+### How it researches
+
+| Step | Screen |
+|---|---|
+| **① Read the article**<br>List each paragraph's number, question, cited scriptures, and footnotes. | <img src="docs/images/step1.png" width="300"> |
+| **② Search WOL**<br>Search 2–3 keywords per paragraph. If there are no results, shorten the keywords and try again. | <img src="docs/images/step2.png" width="300"> |
+| **③ Pick results**<br>Start with the most relevant and recent publications. | <img src="docs/images/step3.png" width="300"> |
+| **④ Open and read**<br>Check the surrounding context, not just the search snippet. | <img src="docs/images/step4.png" width="300"> |
+| **⑤ Write it up**<br>A research table plus Basic / Additional / Research comments, with sources. | <img src="docs/images/step5-result.png" width="300"> |
+
+### Tips
+- Ask for **2–3 paragraphs at a time**. Asking for everything at once makes the research shallow.
+- Spots for a personal experience are marked `[개인 경험]` (personal experience).
+- **Always do the final check yourself.** Open the sources on WOL before using a comment.
 
 ---
 
-## Files
-
-```
-README.md / README.en.md            Guides (Korean / English)
-watchtower-comment-research/        The skill → copy into ~/.claude/skills or ~/.codex/skills
-  ├── SKILL.md                      Research rules and steps
-  └── references/wol.md             WOL URL formats, Bible book numbers
-watchtower-comment-research.skill   Zipped copy of the same skill
-prompts/                            Original prompt text (reference)
-docs/images/                        Images for this guide
-```
-
 ## Notice
-
 - This is a personal tool to help with meeting preparation. It is not an official tool of Jehovah's Witnesses or the Watch Tower Bible and Tract Society.
-- Content and screenshots from jw.org are copyrighted by the Watch Tower Bible and Tract Society of Pennsylvania. Do not copy and redistribute publication content in bulk.
-- The terminal images (Claude Code / Codex) are **illustrations**. Actual screens may differ by version.
+- Content and screenshots from jw.org are copyrighted by the Watch Tower Bible and Tract Society of Pennsylvania.
